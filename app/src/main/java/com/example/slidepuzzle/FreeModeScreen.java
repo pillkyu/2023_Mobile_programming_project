@@ -14,7 +14,6 @@ public class FreeModeScreen extends AppCompatActivity {
 
         //btn_back 구현
         ImageButton btnBack = findViewById(R.id.btn_back);
-
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
