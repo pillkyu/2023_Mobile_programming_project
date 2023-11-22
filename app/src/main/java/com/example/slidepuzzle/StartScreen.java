@@ -21,5 +21,15 @@ public class StartScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageButton btnFreeMode = findViewById(R.id.btn_freeMode);
+        btnFreeMode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StartScreen.this, FreeModeScreen.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

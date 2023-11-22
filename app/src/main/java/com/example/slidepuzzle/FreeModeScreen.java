@@ -6,18 +6,19 @@ import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class ChallengeModeScreen extends AppCompatActivity {
+public class FreeModeScreen extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenge_mode_screen);
+        setContentView(R.layout.activity_free_mode_screen);
 
         //btn_back 구현
         ImageButton btnBack = findViewById(R.id.btn_back);
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BtnBack.goBack(ChallengeModeScreen.this);
+                BtnBack.goBack(FreeModeScreen.this);
             }
         });
     }
