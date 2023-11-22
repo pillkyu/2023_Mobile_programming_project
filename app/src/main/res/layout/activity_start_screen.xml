@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:background="@drawable/bg_start"
-    android:orientation="vertical"
-    tools:context=".StartScreen">
+    android:orientation="vertical">
 
     <ImageButton
         android:id="@+id/btn_challengeMode"
+        android:contentDescription="Challenge Mode Start button"
         android:layout_width="350dp"
         android:layout_height="150dp"
         android:layout_marginTop="300dp"
@@ -20,6 +20,7 @@
 
     <ImageButton
         android:id="@+id/btn_freeMode"
+        android:contentDescription="Free Mode Start button"
         android:layout_width="350dp"
         android:layout_height="150dp"
         android:scaleType="fitCenter"

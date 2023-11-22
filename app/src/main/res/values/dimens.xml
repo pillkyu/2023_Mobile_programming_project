@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!--버튼의 높이를 정의합니다 -->
+    <dimen name="bottom_nav_icon_size">59dp</dimen>
+    <dimen name="bottom_nav_padding">0dp</dimen>
+</resources>
