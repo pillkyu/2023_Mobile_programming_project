@@ -1,30 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:background="@drawable/bg_start"
-    android:orientation="vertical">
+    android:background="@drawable/bg_startpage">
+
+    <ImageView
+        android:id="@+id/main_title"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:padding="0dp"
+        android:src="@drawable/bg_main_title"/>
 
     <ImageButton
         android:id="@+id/btn_challengeMode"
         android:contentDescription="Challenge Mode Start button"
+        android:layout_below="@+id/main_title"
+        android:layout_centerHorizontal="true"
         android:layout_width="350dp"
         android:layout_height="150dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="10dp"
         android:scaleType="fitCenter"
         android:padding="0dp"
         android:background="@null"
-        app:srcCompat="@drawable/btn_challenge_mode_selector" />
+        android:src="@drawable/btn_challenge_mode_selector" />
 
     <ImageButton
         android:id="@+id/btn_freeMode"
         android:contentDescription="Free Mode Start button"
+        android:layout_below="@+id/btn_challengeMode"
+        android:layout_centerHorizontal="true"
         android:layout_width="350dp"
         android:layout_height="150dp"
         android:scaleType="fitCenter"
         android:padding="0dp"
         android:background="@null"
-        app:srcCompat="@drawable/btn_free_mode_selector" />
-</LinearLayout>
+        android:src="@drawable/btn_free_mode_selector" />
+</RelativeLayout>
