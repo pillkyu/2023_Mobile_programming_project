@@ -22,9 +22,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/select_image_view"
+        android:id="@+id/free_mode_play_placehold"
         android:layout_width="250dp"
         android:layout_height="250dp"
+        android:layout_marginVertical="5dp"
         android:src="@drawable/bg_image_placeholder"
         app:layout_constraintBottom_toTopOf="@+id/grid_select_container"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,58 +38,63 @@
         android:background="@color/transparent"
         android:padding="0dp"
         android:text="이미지 불러오기"
-        app:layout_constraintTop_toTopOf="@+id/select_image_view"
-        app:layout_constraintBottom_toBottomOf="@+id/select_image_view"
-        app:layout_constraintStart_toStartOf="@+id/select_image_view"
-        app:layout_constraintEnd_toEndOf="@+id/select_image_view" />
+        app:layout_constraintTop_toTopOf="@+id/free_mode_play_placehold"
+        app:layout_constraintBottom_toBottomOf="@+id/free_mode_play_placehold"
+        app:layout_constraintStart_toStartOf="@+id/free_mode_play_placehold"
+        app:layout_constraintEnd_toEndOf="@+id/free_mode_play_placehold" />
 
-    <LinearLayout
-        android:id="@+id/grid_select_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:padding="0dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btn_game_start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/select_image_view">
+<RadioGroup
+    android:id="@+id/grid_select_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:padding="0dp"
+    android:orientation="vertical"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/free_mode_play_placehold"
+    app:layout_constraintBottom_toTopOf="@+id/btn_game_start">
 
-        <ImageButton
+        <RadioButton
             android:id="@+id/btn_3by3"
             android:layout_width="170dp"
-            android:layout_height="60dp"
-            android:background="@null"
+            android:layout_height="55dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/btn_3by3_selector"
+            android:button="@null"
             android:contentDescription="select 3by3 grid"
             android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/btn_3by3_selector" />
+            android:scaleType="fitCenter"/>
 
-        <ImageButton
+        <RadioButton
             android:id="@+id/btn_4by4"
-            android:layout_width="170dp"
-            android:layout_height="60dp"
-            android:background="@null"
             android:contentDescription="select 4by4 grid"
-            android:padding="0dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/btn_4by4_selector" />
-
-        <ImageButton
-            android:id="@+id/btn_5by5"
             android:layout_width="170dp"
-            android:layout_height="60dp"
-            android:background="@null"
+            android:layout_height="55dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/btn_4by4_selector"
+            android:button="@null"
+            android:padding="0dp"
+            android:scaleType="fitCenter"/>
+
+        <RadioButton
+            android:id="@+id/btn_5by5"
             android:contentDescription="select 5by5 grid"
+            android:layout_width="170dp"
+            android:layout_height="55dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/btn_5by5_selector"
+            android:button="@null"
             android:padding="0dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/btn_5by5_selector" />
-    </LinearLayout>
+            android:src="@drawable/btn_5by5_default" />
+</RadioGroup>
 
     <ImageButton
         android:id="@+id/btn_game_start"
         android:layout_width="250dp"
         android:layout_height="100dp"
+        android:layout_marginVertical="5dp"
         android:background="@null"
         android:contentDescription="game start"
         android:padding="0dp"

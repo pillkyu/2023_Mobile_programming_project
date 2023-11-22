@@ -21,8 +21,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="ChallengeModeClearpageScreen"/>
+        <activity android:name="ChallengeModePlayScreen"/>
         <activity android:name=".ChallengeModeScreen" />
+        <activity android:name="FreeModeClearpageScreen"/>
+        <activity android:name="FreeModePlayScreen"/>
         <activity android:name=".FreeModeScreen"/>
+        <activity android:name="RankingpageScreen"/>
 
     </application>
 
