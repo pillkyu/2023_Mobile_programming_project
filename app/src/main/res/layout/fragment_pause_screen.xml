@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
+    <!--android:clikable="true"와 android:focusable="ture"는
+    뒤에 있는 activity의 버튼들이 클릭되는걸 막기위해 추가함
+    clickable속성은 터치관련, focusable속성은 키보드입력관련 속성임.
+    일반적으로 clickable만 있어도 문제가 해결되지만, 확실하게하기위해서 focusable도 추가함.-->
+
+
+    <!--흐릿한검정색의배경-->
+    <ImageView
+        android:id="@+id/bg_hint"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:src="@drawable/bg_image_placeholder"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!--Rusume box-->
+    <ImageView
+        android:id="@+id/resume_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/resume_box"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!--Resume button-->
+    <ImageButton
+        android:id="@+id/btn_game_start"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@null"
+        android:contentDescription="resume game"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/btn_resume_default"
+        app:layout_constraintBottom_toBottomOf="@+id/resume_box"
+        app:layout_constraintEnd_toEndOf="@+id/resume_box"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@id/resume_box"
+        app:layout_constraintTop_toTopOf="@+id/resume_box"
+        app:layout_constraintVertical_bias="0.37" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
