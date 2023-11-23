@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_clearpage">
+
+    <!--클리어타이틀-->
+    <ImageView
+        android:id="@+id/clear_title"
+        android:src="@drawable/bg_clear"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+
+    <!--퍼즐출력위치-->
+    <com.example.slidepuzzle.SquareImageView
+        android:id="@+id/selected_img_challenge_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="80dp"
+        android:layout_marginVertical="10dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bg_image_placeholder"
+        app:layout_constraintTop_toBottomOf="@+id/clear_title"
+        app:layout_constraintBottom_toTopOf="@+id/my_record"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--my record 출력-->
+    <ImageView
+        android:id="@+id/my_record"
+        android:src="@drawable/bg_my_record"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginHorizontal="70dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@id/selected_img_challenge_mode"
+        app:layout_constraintBottom_toTopOf="@+id/rankinglist_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <!--랭킹정보창-->
+    <ImageView
+        android:id="@+id/rankinglist_small"
+        android:src="@drawable/bg_rankinglist_small"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@id/my_record"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!--랭킹 더보기버튼-->
+    <ImageButton
+        android:id="@+id/btn_more_ranking"
+        android:contentDescription="show more ranking"
+        android:src="@drawable/btn_more_ranking_selector"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@id/my_record"
+        app:layout_constraintBottom_toTopOf="@+id/rankinglist_small"
+        app:layout_constraintStart_toStartOf="@id/rankinglist_small"
+        app:layout_constraintEnd_toEndOf="@+id/rankinglist_small"
+        app:layout_constraintHorizontal_bias="0.03"
+        app:layout_constraintVertical_bias="0.3" />
+
+
+    <!--하단네비게이션바-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_bottom_bar3"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!--홈버튼-->
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:contentDescription="Home Button"
+            app:srcCompat="@drawable/btn_home_selector"
+            android:layout_width="90dp"
+            android:layout_height="53dp"
+            android:background="@null"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,7 +39,7 @@
 
     <!--퍼즐출력위치-->
     <com.example.slidepuzzle.SquareImageView
-        android:id="@+id/free_mode_play_placehold"
+        android:id="@+id/free_mode_play_placeholder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -56,13 +56,12 @@
         android:id="@+id/bottom_buttons_layout"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/bg_bottom_bar1"
+        android:background="@drawable/bg_bottom_bar2"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- 세 개의 버튼 -->
 
         <!--힌트버튼-->
         <ImageButton
@@ -111,5 +110,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

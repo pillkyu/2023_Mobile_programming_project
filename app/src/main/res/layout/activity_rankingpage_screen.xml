@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_clearpage">
+
+    <!--랭킹 페이지 타이틀-->
+    <ImageView
+        android:id="@+id/ranking_title"
+        android:src="@drawable/bg_ranking_title"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginVertical="10dp"
+        android:layout_marginHorizontal="30dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!--랭킹 출력-->
+    <ImageView
+        android:id="@+id/rankinglist_full"
+        android:src="@drawable/bg_rankinglist_full"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintTop_toBottomOf="@id/ranking_title"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    <!--스크롤뷰, 내부에 framelayout,gridlayout이 차례로있음.
+    스크롤뷰를 맨밑으로 내렸을 때에만 하단바와의 간격을주기위해
+    girdlayout을 감싸는 framelayout을 구현후 padding지졍함
+    tools는 에디터에서만보이는옵션임. 배경이 투명이라 어떻게구현됐는지 확인하기위해 작성함-->
+    <ScrollView
+        android:id="@+id/rankinglist_text"
+        android:contentDescription="rankinglist"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="50dp"
+        android:scrollbars="none"
+        android:background="@null"
+        tools:background="@drawable/bg_image_placeholder"
+        app:layout_constraintTop_toTopOf="@+id/rankinglist_full"
+        app:layout_constraintBottom_toBottomOf="@+id/rankinglist_full"
+        app:layout_constraintStart_toStartOf="@+id/rankinglist_full"
+        app:layout_constraintEnd_toEndOf="@+id/rankinglist_full">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="25dp"
+            android:background="@null"
+            tools:background="@drawable/bg_image_placeholder">
+
+            <!--gridlayout에 랭킹정보 텍스트 출력하면됨. 총3열로구성함.-->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="30dp"
+                android:paddingBottom="50dp"
+                android:paddingHorizontal="10dp"
+                android:columnCount="3"
+                android:background="@null"
+                tools:background="@drawable/bg_image_placeholder">
+            </GridLayout>
+        </FrameLayout>
+
+    </ScrollView>
+
+
+    <!--하단네비게이션바-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_buttons_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/bg_bottom_bar3"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!--홈버튼-->
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:contentDescription="Home Button"
+            app:srcCompat="@drawable/btn_home_selector"
+            android:layout_width="90dp"
+            android:layout_height="53dp"
+            android:background="@null"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
