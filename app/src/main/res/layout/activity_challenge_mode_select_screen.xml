@@ -9,14 +9,14 @@
 
 
     <ImageView
-        android:id="@+id/free_mode_title"
+        android:id="@+id/challenge_mode_title"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:background="@null"
         android:padding="0dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/bg_free_title"
+        android:src="@drawable/bg_challenge_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,42 +30,21 @@
         app:layout_constraintBottom_toTopOf="@+id/grid_select_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/free_mode_title" />
+        app:layout_constraintTop_toBottomOf="@+id/challenge_mode_title" />
 
-    <ImageView
-        android:id = "@+id/view_for_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginVertical="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/grid_select_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/free_mode_title"
-        android:visibility="gone"/>
 
-    <Button
-        android:id = "@+id/btn_bring_image"
+
+    <RadioGroup
+        android:id="@+id/grid_select_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:gravity="center"
         android:padding="0dp"
-        android:text="이미지 불러오기"
-        app:layout_constraintTop_toTopOf="@+id/free_mode_play_placehold"
-        app:layout_constraintBottom_toBottomOf="@+id/free_mode_play_placehold"
-        app:layout_constraintStart_toStartOf="@+id/free_mode_play_placehold"
-        app:layout_constraintEnd_toEndOf="@+id/free_mode_play_placehold" />
-
-<RadioGroup
-    android:id="@+id/grid_select_container"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:gravity="center"
-    android:padding="0dp"
-    android:orientation="vertical"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/free_mode_play_placehold"
-    app:layout_constraintBottom_toTopOf="@+id/btn_game_start">
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/free_mode_play_placehold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_game_start">
 
         <RadioButton
             android:id="@+id/btn_3by3"
@@ -100,7 +79,7 @@
             android:padding="0dp"
             android:scaleType="fitCenter"
             android:src="@drawable/btn_5by5_default" />
-</RadioGroup>
+    </RadioGroup>
 
     <ImageButton
         android:id="@+id/btn_game_start"
@@ -142,33 +121,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/btn_back_selector" />
-            <!--홈버튼-->
-<!--        <ImageButton-->
-<!--            android:id="@+id/btn_home"-->
-<!--            android:layout_width="90dp"-->
-<!--            android:layout_height="53dp"-->
-<!--            android:background="@null"-->
-<!--            android:contentDescription="Home Button"-->
-<!--            android:padding="0dp"-->
-<!--            android:scaleType="fitCenter"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toStartOf="@id/btn_ranking"-->
-<!--            app:layout_constraintStart_toEndOf="@id/btn_back"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:srcCompat="@drawable/btn_home_selector" />-->
-            <!--랭킹버튼-->
-<!--        <ImageButton-->
-<!--            android:id="@+id/btn_ranking"-->
-<!--            android:layout_width="90dp"-->
-<!--            android:layout_height="53dp"-->
-<!--            android:background="@null"-->
-<!--            android:contentDescription="Ranking Button"-->
-<!--            android:padding="0dp"-->
-<!--            android:scaleType="fitCenter"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:srcCompat="@drawable/btn_ranking_selector" />-->
+        <!--홈버튼-->
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/btn_home"-->
+        <!--            android:layout_width="90dp"-->
+        <!--            android:layout_height="53dp"-->
+        <!--            android:background="@null"-->
+        <!--            android:contentDescription="Home Button"-->
+        <!--            android:padding="0dp"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toStartOf="@id/btn_ranking"-->
+        <!--            app:layout_constraintStart_toEndOf="@id/btn_back"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:srcCompat="@drawable/btn_home_selector" />-->
+        <!--랭킹버튼-->
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/btn_ranking"-->
+        <!--            android:layout_width="90dp"-->
+        <!--            android:layout_height="53dp"-->
+        <!--            android:background="@null"-->
+        <!--            android:contentDescription="Ranking Button"-->
+        <!--            android:padding="0dp"-->
+        <!--            android:scaleType="fitCenter"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:srcCompat="@drawable/btn_ranking_selector" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

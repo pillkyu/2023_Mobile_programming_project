@@ -132,7 +132,7 @@
         <!-- 세 개의 버튼 -->
 
         <ImageButton
-            android:id="@+id/btn_back"
+            android:id="@+id/back_button"
             android:contentDescription="Back Button"
             android:layout_width="90dp"
             android:layout_height="53dp"

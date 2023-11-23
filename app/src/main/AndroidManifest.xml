@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="34" />
+
 
     <application
         android:allowBackup="true"
@@ -28,6 +31,7 @@
         <activity android:name="FreeModePlayScreen"/>
         <activity android:name=".FreeModeScreen"/>
         <activity android:name="RankingpageScreen"/>
+        <activity android:name=".ChallengeModeSelectScreen" />
 
     </application>
 
