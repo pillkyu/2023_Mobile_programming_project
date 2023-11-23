@@ -51,6 +51,35 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
+    <!--타임 기록-->
+    <TextView
+        android:id="@+id/Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="508dp"
+        android:background="@null"
+        android:padding="10dp"
+        android:text="10"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.617"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--무브 기록-->
+    <TextView
+        android:id="@+id/Moves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="580dp"
+        android:background="@null"
+        android:padding="10dp"
+        android:text="10"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.617"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!--하단네비게이션바-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_buttons_layout"

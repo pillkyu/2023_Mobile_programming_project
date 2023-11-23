@@ -74,6 +74,44 @@
                 android:columnCount="3"
                 android:background="@null"
                 tools:background="@drawable/bg_image_placeholder">
+
+                <TextView
+                    android:id="@+id/Rank"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="1\n2\n3\n4"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_margin="20dp"
+                    android:paddingLeft="10dp"
+                    />
+                <TextView
+                    android:id="@+id/Time"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="10\n20\n30\n40"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_margin="20dp"
+                    android:paddingLeft="10dp"
+                    />
+
+                <TextView
+                    android:id="@+id/Moves"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:text="10\n20\n30\n40"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:layout_margin="20dp"
+                    android:paddingLeft="10dp"
+                    />
             </GridLayout>
         </FrameLayout>
 

@@ -13,7 +13,7 @@
         android:src="@drawable/bg_clear"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="18dp"
         android:background="@null"
         android:padding="0dp"
         android:scaleType="fitCenter"
@@ -52,19 +52,50 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
 
+
+
+    <!--MY타임 기록-->
+    <TextView
+        android:id="@+id/MyTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:background="@null"
+
+        android:text="10"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.411"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--MY무브 기록-->
+    <TextView
+        android:id="@+id/MyMoves"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:background="@null"
+        android:text="10"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.744"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!--랭킹정보창-->
     <ImageView
         android:id="@+id/rankinglist_small"
-        android:src="@drawable/bg_rankinglist_small"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@null"
         android:padding="0dp"
         android:scaleType="fitCenter"
-        app:layout_constraintTop_toBottomOf="@id/my_record"
+        android:src="@drawable/bg_rankinglist_small"
         app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/my_record" />
 
     <!--랭킹 더보기버튼-->
     <ImageButton
@@ -83,8 +114,50 @@
         app:layout_constraintEnd_toEndOf="@+id/rankinglist_small"
         app:layout_constraintHorizontal_bias="0.03"
         app:layout_constraintVertical_bias="0.3" />
+    <!--랭크 -->
+    <TextView
+        android:id="@+id/Rank"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_marginTop="520dp"
+        android:background="@null"
+        android:padding="10dp"
+        android:text="1위\n2위\n3위"
+        android:textSize="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.167"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--타임 기록-->
 
 
+    <TextView
+        android:id="@+id/Time"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_marginTop="520dp"
+        android:background="@null"
+        android:paddingTop="10dp"
+        android:text="100"
+        android:textSize="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!--무브 기록 -->
+    <TextView
+        android:id="@+id/Moves"
+        android:layout_width="wrap_content"
+        android:layout_height="130dp"
+        android:layout_marginTop="520dp"
+        android:background="@null"
+        android:paddingTop="10dp"
+        android:text="123"
+        android:textSize="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.801"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <!--하단네비게이션바-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_buttons_layout"
