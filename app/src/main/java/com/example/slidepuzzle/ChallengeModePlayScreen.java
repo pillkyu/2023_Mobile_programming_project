@@ -9,9 +9,9 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_challenge_mode_play_screen);
+        setContentView(R.layout.activity_free_mode_play_screen);
 
-        ImageButton hintButton = findViewById(R.id.btn_hint_counted);
+        ImageButton hintButton = findViewById(R.id.btn_hint);
 
         hintButton.setOnClickListener(new View.OnClickListener() {
             @Override

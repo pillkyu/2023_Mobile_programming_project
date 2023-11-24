@@ -20,14 +20,27 @@
         app:layout_constraintEnd_toStartOf="@+id/times_moves"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:id="@+id/free_puzzle"
+        android:rowCount="3"
+        android:columnCount="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+    </GridLayout>
     <!--    시간,이동횟수 정보창-->
+
+    <!--퍼즐출력위치-->
     <ImageView
         android:id="@+id/times_moves"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:layout_marginRight="10dp"
         android:background="@null"
         android:padding="0dp"
@@ -37,19 +50,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--퍼즐출력위치-->
-    <com.example.slidepuzzle.SquareImageView
-        android:id="@+id/free_mode_play_placeholder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginBottom="50dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/bg_image_placeholder"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_buttons_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/times_moves" />
+
 
     <!--하단네비게이션바-->
     <androidx.constraintlayout.widget.ConstraintLayout

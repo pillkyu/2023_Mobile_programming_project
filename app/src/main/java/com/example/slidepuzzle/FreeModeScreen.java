@@ -24,7 +24,7 @@ import java.io.IOException;
     public class FreeModeScreen extends AppCompatActivity {
 
         private int selected_num;
-        private byte[] byteArray;
+        private Uri selectedImageUri;
 
         private ActivityResultLauncher<Intent> activityResultLauncher;
 
@@ -40,7 +40,7 @@ import java.io.IOException;
                         public void onActivityResult(ActivityResult result) {
                             if (result.getResultCode() == RESULT_OK) {
                                 Intent intent = result.getData();
-                                Uri selectedImageUri = intent.getData();
+                                selectedImageUri = intent.getData();
                                 displayImage(selectedImageUri);
                             }
                         }
@@ -100,7 +100,7 @@ import java.io.IOException;
                 public void onClick(View v) {
                     Intent intent = new Intent(FreeModeScreen.this, FreeModePlayScreen.class);
                     intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
-                    intent.putExtra("selected_image", byteArray); // 이미지 byte 전달
+                    intent.putExtra("selected_image",  selectedImageUri.toString()); // 이미지 byte 전달
                     startActivity(intent);
                 }
             });
@@ -135,11 +135,6 @@ import java.io.IOException;
                 Bitmap squareBitmap = Bitmap.createBitmap(originalBitmap, x, y, squareSize, squareSize);
                 ImageView imageView = findViewById(R.id.view_for_image);
                 imageView.setImageBitmap(squareBitmap);
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                squareBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-                byteArray = stream.toByteArray();
-
-
 
             } catch (IOException e) {
                 e.printStackTrace();
