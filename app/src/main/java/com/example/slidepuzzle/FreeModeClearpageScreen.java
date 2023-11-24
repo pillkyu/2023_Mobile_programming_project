@@ -2,6 +2,8 @@ package com.example.slidepuzzle;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -28,10 +30,11 @@ public class FreeModeClearpageScreen extends AppCompatActivity {
 
         Intent intent = getIntent();
         int time = intent.getIntExtra("time",0);  //시간
-        int imgId = intent.getIntExtra("selected_image",0); //이미지
         int moveCount = intent.getIntExtra("move_count",0); //이동 횟수
+        byte[] byteArray = intent.getByteArrayExtra("selected_image"); //이미지
+        Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length); //넘겨받은 이미지 비트맵 변환
 
-        imgv.setImageResource(imgId);
+        imgv.setImageBitmap(bitmap);     //비트맵을 출력
         timev.setText(String.valueOf(time));
         movev.setText(String.valueOf(moveCount));
 
