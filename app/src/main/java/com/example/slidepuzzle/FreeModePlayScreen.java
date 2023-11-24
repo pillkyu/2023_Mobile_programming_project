@@ -23,7 +23,7 @@ public class FreeModePlayScreen extends AppCompatActivity {
                 Uri selectedImageUri = Uri.parse(uriString);
 
                 // 이미지뷰에 Uri 설정하여 이미지 출력
-                ImageView imageView = findViewById(R.id.free_mode_play_placehold);
+                SquareImageView imageView = findViewById(R.id.free_mode_play_placeholder);
                 imageView.setImageURI(selectedImageUri);
             }
         }

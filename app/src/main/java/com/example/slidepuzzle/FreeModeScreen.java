@@ -17,13 +17,14 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 
     public class FreeModeScreen extends AppCompatActivity {
 
-        private Uri selectedImageUri; // 이미지 Uri를 저장할 변수 선언
         private int selected_num;
+        private byte[] byteArray;
 
         private ActivityResultLauncher<Intent> activityResultLauncher;
 
@@ -99,7 +100,7 @@ import java.io.IOException;
                 public void onClick(View v) {
                     Intent intent = new Intent(FreeModeScreen.this, FreeModePlayScreen.class);
                     intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
-                    intent.putExtra("selected_image", selectedImageUri.toString()); // 이미지 Uri 전달
+                    intent.putExtra("selected_image", byteArray); // 이미지 byte 전달
                     startActivity(intent);
                 }
             });
@@ -134,7 +135,10 @@ import java.io.IOException;
                 Bitmap squareBitmap = Bitmap.createBitmap(originalBitmap, x, y, squareSize, squareSize);
                 ImageView imageView = findViewById(R.id.view_for_image);
                 imageView.setImageBitmap(squareBitmap);
-                selectedImageUri = imageUri; // 선택한 이미지의 Uri를 저장합니다.
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                squareBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byteArray = stream.toByteArray();
+
 
 
             } catch (IOException e) {
