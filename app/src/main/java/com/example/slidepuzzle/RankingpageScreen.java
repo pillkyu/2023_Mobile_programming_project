@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,7 +17,7 @@ public class RankingpageScreen extends AppCompatActivity {
     SQLiteDatabase sqlDB;
     StartScreen.myDBHelper myHelper;
     TextView rankv,timev,movev;
-    ImageButton btn3,btn4,btn5;       //이미지 버튼으로 대체 될 지도 모름
+    RadioButton btn3,btn4,btn5;       //이미지 버튼으로 대체 될 지도 모름
     ImageButton btnhome;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,11 +29,11 @@ public class RankingpageScreen extends AppCompatActivity {
         rankv  =(TextView) findViewById(R.id.Rank);
         timev  =(TextView) findViewById(R.id.Time);
         movev  =(TextView) findViewById(R.id.Moves);
-        /*
-        btn3 =(Button)findViewById(R.id.button3); //3*3 랭킹만 출력
-        btn4 =(Button)findViewById(R.id.button4); //4*4 랭킹만 출력
-        btn5 =(Button)findViewById(R.id.button5); //5*5 랭킹만 출력
-         */
+
+        btn3 =(RadioButton) findViewById(R.id.btn_3by3); //3*3 랭킹만 출력
+        btn4 =(RadioButton) findViewById(R.id.btn_4by4); //4*4 랭킹만 출력
+        btn5 =(RadioButton) findViewById(R.id.btn_5by5); //5*5 랭킹만 출력
+
         btnhome =(ImageButton)findViewById(R.id.btn_home);
 
 
