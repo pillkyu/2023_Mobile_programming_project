@@ -47,13 +47,14 @@ public class ChallengeModeClearpageScreen extends AppCompatActivity {
         int imgId = intent.getIntExtra("selected_image",0);
         int num = intent.getIntExtra("selected_num",0);
         int moveCount = intent.getIntExtra("move_count",0);
-        int time = intent.getIntExtra("time",0);
-
+        int time = (int) intent.getLongExtra("time",0);
+        time = time/1000;
         //데이터 삽입
         sqlDB = myHelper.getWritableDatabase(); // DB 쓰기 모드로 읽어옴
         String Sql = "INSERT INTO image_records VALUES (NULL," + imgId + ", " + time + "," + moveCount + ", " + num + ");";
         sqlDB.execSQL(Sql);
         sqlDB.close();
+
 
         //my결과 띄우기
         imgv.setImageResource(imgId);

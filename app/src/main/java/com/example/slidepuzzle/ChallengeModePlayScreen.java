@@ -1,5 +1,6 @@
 package com.example.slidepuzzle;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -48,7 +49,7 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
     private long calTime=0;
     private static final String PREFS_NAME = "MyPrefsFile2";
     private static final String END_TIME_KEY = "endTimeKey2";
-
+    int hintCount =3;
     Handler timerHandler=new Handler();
     Runnable timerRunnable = new Runnable() {
         @Override
@@ -63,7 +64,6 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
         }
     };
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +74,7 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
         timerHandler.postDelayed(timerRunnable, 0);
 
 
-        puzzleGrid = findViewById(R.id.free_puzzle_ch);
+                puzzleGrid = findViewById(R.id.free_puzzle_ch);
         Intent intent = getIntent();
         selected_Id=intent.getIntExtra("Resource_Id",0);
         if (intent != null) {
@@ -116,23 +116,41 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
         ImageButton btnHint = findViewById(R.id.btn_hint_ch);
         FragmentContainerView fragmentContainerView = findViewById(R.id.fragment_container);
         //hint버튼 눌렷을 때의 동작 구현
+
+        updateHintButtonImage(btnHint, hintCount); // 초기 이미지 설정
+
+
+        //////////////////////////////////////////////////////////////
+
+        //hint버튼 눌렷을 때의 동작 구현
         btnHint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Uri selectedImageUri = Uri.parse(selectedImageUriString);
-                // 프래그먼트 생성 및 Bundle을 통해 이미지 URI 전달
-                HintFragment hintFragment = new HintFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("imageUri", selectedImageUri.toString()); // URI를 String으로 변환
-                hintFragment.setArguments(bundle);
-                // 프래그먼트 트랜잭션 수행
-                fragmentContainerView.setVisibility(View.VISIBLE);
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, hintFragment)
-                        .addToBackStack(null)
-                        .commit();
+
+                if (hintCount > 0) {
+                    hintCount--; // 힌트 사용
+                    updateHintButtonImage(btnHint, hintCount);
+                    Uri selectedImageUri = Uri.parse(selectedImageUriString);
+                    // 프래그먼트 생성 및 Bundle을 통해 이미지 URI 전달
+                    HintFragment hintFragment = new HintFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("imageUri", selectedImageUri.toString()); // URI를 String으로 변환
+                    hintFragment.setArguments(bundle);
+                    // 프래그먼트 트랜잭션 수행
+                    fragmentContainerView.setVisibility(View.VISIBLE);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, hintFragment)
+                            .addToBackStack(null)
+                            .commit();
+
+                } else {
+                    // 힌트를 모두 사용한 상태 (0/3)
+                    // 추가적인 동작이 필요하면 여기에 구현
+                }
+
             }
+
         });
 //////////////////////////////////////////////////
         //일시정지 버튼 구현
@@ -143,7 +161,7 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
                 pauseTimer();
                 fragmentContainerView.setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new pauseFragment())
+                        .replace(R.id.fragment_container, new pauseFragment_ch())
                         .commit();
 
             }
@@ -158,6 +176,8 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
                 BtnHome.goHome(ChallengeModePlayScreen.this);
             }
         });
+
+
     }
     private void initializePuzzle(Bitmap fullImage,int num) {
 
@@ -255,13 +275,13 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
 
                             if (isPuzzleComplete()) {
                                 Toast.makeText(ChallengeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
-                                SharedPreferences prefs2 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                                calTime=prefs2.getLong(END_TIME_KEY, 0);
-
+                                //SharedPreferences prefs2 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                                //calTime=prefs2.getLong(END_TIME_KEY, 0);
+                                Long calctime =System.currentTimeMillis() -startTime;
                                 Intent outintent = new Intent(ChallengeModePlayScreen.this, ChallengeModeClearpageScreen.class);
                                 outintent.putExtra("move_count", moveCount);
                                 outintent.putExtra("selected_image",selected_Id);
-                                outintent.putExtra("time",calTime);
+                                outintent.putExtra("time",calctime);
                                 outintent.putExtra("selected_num",num);
                                 // 다음 액티비티 시작
                                 startActivity(outintent);
@@ -303,7 +323,7 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
     private boolean isPuzzleComplete() {
         for (int i = 0; i < puzzlePieces.size(); i++) {
             if (puzzlePieces.get(i) != i) {
-                return false;
+                return false; // true로 수정시 바로 깨짐
             }
         }
         return true;
@@ -390,6 +410,24 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
     public void resumeTimerFromFragment() {
         startTime = System.currentTimeMillis() - calTime;
         timerHandler.postDelayed(timerRunnable, 0);
+    }
+
+    public void updateHintButtonImage(ImageButton hintButton, int count) {
+        switch (count) {
+            case 3:
+                hintButton.setImageResource(R.drawable.btn_hint_3_selector);
+                break;
+            case 2:
+                hintButton.setImageResource(R.drawable.btn_hint_2_selector);
+                break;
+            case 1:
+                hintButton.setImageResource(R.drawable.btn_hint_1_selector);
+                break;
+            case 0:
+                hintButton.setImageResource(R.drawable.btn_hint_0_selector);
+                break;
+        }
+        hintButton.setEnabled(count > 0);
     }
 
 }

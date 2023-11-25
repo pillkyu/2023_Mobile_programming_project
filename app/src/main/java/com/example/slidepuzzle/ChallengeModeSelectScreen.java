@@ -15,11 +15,13 @@ public class ChallengeModeSelectScreen extends AppCompatActivity {
     private int selectedImageResource; // URI를 저장할 변수 선언
     private int selected_num;
     private Uri selectimage;
-
+    StartScreen.myDBHelper myHelper;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        myHelper = new StartScreen.myDBHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_challenge_mode_select_screen);
 
@@ -79,6 +81,20 @@ public class ChallengeModeSelectScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BtnBack.goBack(ChallengeModeSelectScreen.this);
+            }
+        });
+
+
+
+
+
+        //데이터 베이스 초기화 버튼
+        ImageView init;
+        init = (ImageView)findViewById(R.id.challenge_mode_title);
+        init.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myHelper.onUpgrade(myHelper.getReadableDatabase(),1,2);
             }
         });
 

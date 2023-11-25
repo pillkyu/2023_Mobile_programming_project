@@ -56,12 +56,11 @@ public class FreeModePlayScreen extends AppCompatActivity {
             long millis = System.currentTimeMillis() - startTime;
             int seconds = (int) (millis / 1000);
 
-            timerTextView.setText(String.valueOf(seconds));
+            timerTextView.setText(seconds+"초");
 
             timerHandler.postDelayed(this, 1000); // 1초마다 업데이트
         }
     };
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -253,12 +252,14 @@ public class FreeModePlayScreen extends AppCompatActivity {
 
                              if (isPuzzleComplete()) {
                                 Toast.makeText(FreeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
-                                 SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-                                 calTime=prefs.getLong(END_TIME_KEY, 0);
+                                 //SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                                 //calTime=prefs.getLong(END_TIME_KEY, 0);
+
+                                 Long calctime =System.currentTimeMillis() -startTime;
                                 Intent outintent = new Intent(FreeModePlayScreen.this, FreeModeClearpageScreen.class);
                                  outintent.putExtra("move_count", moveCount);
                                  outintent.putExtra("selected_image",selectedImageUriString);
-                                 outintent.putExtra("time",calTime);
+                                 outintent.putExtra("time",calctime);
                                  // 다음 액티비티 시작
                                  startActivity(outintent);
                             }
