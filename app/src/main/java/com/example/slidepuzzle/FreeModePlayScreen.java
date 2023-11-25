@@ -101,20 +101,29 @@ public class FreeModePlayScreen extends AppCompatActivity {
         }
 
 
+        //////////////////////////////////////////////////////////////
         ImageButton btnHint = findViewById(R.id.btn_hint);
         FragmentContainerView fragmentContainerView = findViewById(R.id.fragment_container);
-
         //hint버튼 눌렷을 때의 동작 구현
         btnHint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Fragment표시
+
+                Uri selectedImageUri = Uri.parse(selectedImageUriString);
+                // 프래그먼트 생성 및 Bundle을 통해 이미지 URI 전달
+                HintFragment hintFragment = new HintFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("imageUri", selectedImageUri.toString()); // URI를 String으로 변환
+                hintFragment.setArguments(bundle);
+                // 프래그먼트 트랜잭션 수행
                 fragmentContainerView.setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new HintFragment())
+                        .replace(R.id.fragment_container, hintFragment)
+                        .addToBackStack(null)
                         .commit();
             }
         });
+//////////////////////////////////////////////////
 
         //홈버튼 구현
         ImageButton btnHome = findViewById(R.id.btn_home);
