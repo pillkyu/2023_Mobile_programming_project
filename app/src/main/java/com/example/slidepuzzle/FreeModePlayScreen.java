@@ -1,17 +1,21 @@
 package com.example.slidepuzzle;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
+
 public class FreeModePlayScreen extends AppCompatActivity {
     private GridLayout puzzleGrid;
     private List<Integer> puzzlePieces;
@@ -31,12 +37,39 @@ public class FreeModePlayScreen extends AppCompatActivity {
     private int moveCount = 0;
 
     private String selectedImageUriString;
+    private TextView moveTextView;
+    private TextView timerTextView;
+    private long startTime = 0;
+    private long endTime = 0;
+    private long calTime=0;
+    private static final String PREFS_NAME = "MyPrefsFile";
+    private static final String END_TIME_KEY = "endTimeKey";
+
+    Handler timerHandler=new Handler();
+    Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+
+            long millis = System.currentTimeMillis() - startTime;
+            int seconds = (int) (millis / 1000);
+
+            timerTextView.setText(String.valueOf(seconds));
+
+            timerHandler.postDelayed(this, 1000); // 1초마다 업데이트
+        }
+    };
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_free_mode_play_screen);
+        moveTextView=findViewById(R.id.moves);
+        timerTextView = findViewById(R.id.times);
+        startTime = System.currentTimeMillis();
+        timerHandler.postDelayed(timerRunnable, 0);
+
+
         puzzleGrid = findViewById(R.id.free_puzzle);
         Intent intent = getIntent();
         if (intent != null) {
@@ -56,6 +89,8 @@ public class FreeModePlayScreen extends AppCompatActivity {
                 imageView.setImageBitmap(fullImage);*/
                 int num = intent.getIntExtra("selected_num", 3);
 
+                puzzleGrid.setColumnCount(num);
+                puzzleGrid.setRowCount(num);
                 initializePuzzle(fullImage, num);
 
                 } catch (IOException e) {
@@ -66,20 +101,29 @@ public class FreeModePlayScreen extends AppCompatActivity {
         }
 
 
+        //////////////////////////////////////////////////////////////
         ImageButton btnHint = findViewById(R.id.btn_hint);
         FragmentContainerView fragmentContainerView = findViewById(R.id.fragment_container);
-
         //hint버튼 눌렷을 때의 동작 구현
         btnHint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Fragment표시
+
+                Uri selectedImageUri = Uri.parse(selectedImageUriString);
+                // 프래그먼트 생성 및 Bundle을 통해 이미지 URI 전달
+                HintFragment hintFragment = new HintFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("imageUri", selectedImageUri.toString()); // URI를 String으로 변환
+                hintFragment.setArguments(bundle);
+                // 프래그먼트 트랜잭션 수행
                 fragmentContainerView.setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new HintFragment())
+                        .replace(R.id.fragment_container, hintFragment)
+                        .addToBackStack(null)
                         .commit();
             }
         });
+//////////////////////////////////////////////////
 
         //홈버튼 구현
         ImageButton btnHome = findViewById(R.id.btn_home);
@@ -131,12 +175,7 @@ public class FreeModePlayScreen extends AppCompatActivity {
 
                                     if (isPuzzleComplete()) {
                                         Toast.makeText(FreeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
-                                        Intent outintent = new Intent(FreeModePlayScreen.this, FreeModeClearpageScreen.class);
-                                        outintent.putExtra("move_count", moveCount);
-                                        outintent.putExtra("selecet_image",selectedImageUriString);
 
-                                        // 다음 액티비티 시작
-                                        startActivity(outintent);
                                     }
                                 }
                             }
@@ -166,6 +205,8 @@ public class FreeModePlayScreen extends AppCompatActivity {
         Collections.swap(puzzlePieces, emptyIndex, clickedIndex);
 
         moveCount++;
+
+        moveTextView.setText(String.valueOf(moveCount));
     }
 
 
@@ -188,10 +229,17 @@ public class FreeModePlayScreen extends AppCompatActivity {
                             swapPieces(clickedPiece,num);
                             updatePuzzleView(width,height,num);
 
-                          /*  if (isPuzzleComplete()) {
-
+                             if (isPuzzleComplete()) {
                                 Toast.makeText(FreeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
-                            }*/
+                                 SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                                 calTime=prefs.getLong(END_TIME_KEY, 0);
+                                Intent outintent = new Intent(FreeModePlayScreen.this, FreeModeClearpageScreen.class);
+                                 outintent.putExtra("move_count", moveCount);
+                                 outintent.putExtra("selected_image",selectedImageUriString);
+                                 outintent.putExtra("time",calTime);
+                                 // 다음 액티비티 시작
+                                 startActivity(outintent);
+                            }
                         }
                     }
                 });
@@ -274,8 +322,28 @@ public class FreeModePlayScreen extends AppCompatActivity {
         puzzlereturn=puzzlePieces;
         return puzzlereturn;
     }
+    @Override
+    public void onPause() {
+        super.onPause();
+        endTime = System.currentTimeMillis();
+        timerHandler.removeCallbacks(timerRunnable);
+        calTime=endTime-startTime;
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putLong(END_TIME_KEY, calTime);
+        editor.apply();
+        // 여기서 타이머를 일시 정지할 수 있습니다.
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        startTime = System.currentTimeMillis();
+        timerHandler.postDelayed(timerRunnable, 0);
+        // 여기서 타이머를 재개할 수 있습니다.
+    }
 }
+
+
 
 
 
