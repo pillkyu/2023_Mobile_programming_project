@@ -1,11 +1,8 @@
 package com.example.slidepuzzle;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -13,11 +10,11 @@ import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.ByteArrayOutputStream;
 
 public class ChallengeModeSelectScreen extends AppCompatActivity {
     private int selectedImageResource; // URI를 저장할 변수 선언
     private int selected_num;
+    private Uri selectimage;
 
 
 
@@ -28,14 +25,12 @@ public class ChallengeModeSelectScreen extends AppCompatActivity {
 
 
         selectedImageResource = getIntent().getIntExtra("Resource_Id", 0);
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), selectedImageResource);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
+        selectimage = Uri.parse("android.resource://" + getPackageName() + "/" + selectedImageResource);
+
 
 
         ImageView imageView = findViewById(R.id.free_mode_play_placehold);
-        imageView.setImageResource(selectedImageResource);
+        imageView.setImageURI(selectimage);
 
         //nBy n button 구현
         RadioButton btn3by3 = findViewById(R.id.btn_3by3);
@@ -73,7 +68,7 @@ public class ChallengeModeSelectScreen extends AppCompatActivity {
                 Intent intent = new Intent(ChallengeModeSelectScreen.this, ChallengeModePlayScreen.class);
 
                 intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
-                intent.putExtra("selected_image", byteArray); // 이미지 Uri 전달
+                intent.putExtra("selected_image", selectimage.toString()); // 이미지 Uri 전달
                 startActivity(intent);
             }
         });
