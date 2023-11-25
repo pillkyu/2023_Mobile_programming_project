@@ -17,7 +17,7 @@
         android:padding="0dp"
         android:scaleType="fitCenter"
         android:src="@drawable/btn_pause_selector"
-        app:layout_constraintEnd_toStartOf="@+id/times"
+        app:layout_constraintEnd_toStartOf="@+id/times_moves"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,20 @@
 
     </GridLayout>
     <!--    시간,이동횟수 정보창-->
-
+    <ImageView
+        android:id="@+id/times_moves"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="10dp"
+        android:background="@null"
+        android:padding="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/bg_time_moves"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
     <!--퍼즐출력위치-->
     <TextView
         android:id="@+id/times"
@@ -53,9 +66,9 @@
         android:id="@+id/moves"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="110dp"
         android:layout_marginTop="40dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginRight="0dp"
         android:background="@null"
         android:padding="0dp"
         android:scaleType="fitCenter"
