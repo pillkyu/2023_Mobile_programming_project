@@ -33,7 +33,7 @@ public class FreeModeClearpageScreen extends AppCompatActivity {
         movev = (TextView) findViewById(R.id.Moves);
 
         Intent intent = getIntent();
-        int time = intent.getIntExtra("time",0);  //시간
+        int time = (int) intent.getLongExtra("time",0);  //시간
         int moveCount = intent.getIntExtra("move_count",0); //이동 횟수
         String selectedImageUriString = intent.getStringExtra("selected_image"); //이미지
         Uri selectedImageUri = Uri.parse(selectedImageUriString);
