@@ -35,6 +35,9 @@ public class FreeModePlayScreen extends AppCompatActivity {
     private List<Integer> puzzlereturn;
     private List<Bitmap> pieces;
     private int moveCount = 0;
+    private ImageButton reset_btn;
+    private Bitmap fullImage; // fullImage를 멤버 변수로 선언
+    private int num;
 
     private String selectedImageUriString;
     private TextView moveTextView;
@@ -82,17 +85,23 @@ public class FreeModePlayScreen extends AppCompatActivity {
 
                 Resources resources = getResources();
                 int screenWidth = resources.getDisplayMetrics().widthPixels;
-                Bitmap fullImage = Bitmap.createScaledBitmap(tempimage, screenWidth, screenWidth, true);
+                fullImage = Bitmap.createScaledBitmap(tempimage, screenWidth, screenWidth, true);
 
                 // 이미지뷰에 Uri 설정하여 이미지 출력
                 /*SquareImageView imageView = findViewById(R.id.free_mode_play_placeholder);
                 imageView.setImageBitmap(fullImage);*/
-                int num = intent.getIntExtra("selected_num", 3);
+                num = intent.getIntExtra("selected_num", 3);
 
                 puzzleGrid.setColumnCount(num);
                 puzzleGrid.setRowCount(num);
                 initializePuzzle(fullImage, num);
-
+                ImageButton reset_btn=findViewById(R.id.btn_reset);
+                    reset_btn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            resetPuzzle(v);
+                        }
+                    });
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -340,6 +349,20 @@ public class FreeModePlayScreen extends AppCompatActivity {
         startTime = System.currentTimeMillis();
         timerHandler.postDelayed(timerRunnable, 0);
         // 여기서 타이머를 재개할 수 있습니다.
+    }
+    public void resetPuzzle(View view) {
+        puzzleGrid.removeAllViews();
+        // 퍼즐 조각을 초기화하고 뷰를 업데이트합니다.
+        initializePuzzle(fullImage, num);
+
+        // 이동 횟수를 초기화하고 이동 텍스트 뷰를 업데이트합니다.
+        moveCount = 0;
+        moveTextView.setText(String.valueOf(moveCount));
+
+        // 타이머를 재설정합니다.
+        startTime = System.currentTimeMillis();
+        timerHandler.removeCallbacks(timerRunnable);
+        timerHandler.postDelayed(timerRunnable, 0);
     }
 }
 
