@@ -51,7 +51,7 @@ public class RankingpageScreen extends AppCompatActivity {
 
             timetext +=String.valueOf(cursor.getString(0)) +"\n";
             movetext +=String.valueOf(cursor.getString(1))+"\n";
-            ranktext +=String.valueOf(number);
+            ranktext +=String.valueOf(number)+"\n";
             number ++;
         }
         timev.setText(timetext);
@@ -72,7 +72,7 @@ public class RankingpageScreen extends AppCompatActivity {
                 while (cursor.moveToNext()) {
                     timetext +=String.valueOf(cursor.getString(0)) +"\n";
                     movetext +=String.valueOf(cursor.getString(1))+"\n";
-                    ranktext +=String.valueOf(number);
+                    ranktext +=String.valueOf(number)+"\n";
                     number ++;
                 }
                 timev.setText(timetext);
@@ -95,7 +95,7 @@ public class RankingpageScreen extends AppCompatActivity {
                 while (cursor.moveToNext()) {
                     timetext +=String.valueOf(cursor.getString(0)) +"\n";
                     movetext +=String.valueOf(cursor.getString(1))+"\n";
-                    ranktext +=String.valueOf(number);
+                    ranktext +=String.valueOf(number)+"\n";
                     number ++;
                 }
                 timev.setText(timetext);
@@ -118,7 +118,7 @@ public class RankingpageScreen extends AppCompatActivity {
                 while (cursor.moveToNext()) {
                     timetext +=String.valueOf(cursor.getString(0)) +"\n";
                     movetext +=String.valueOf(cursor.getString(1))+"\n";
-                    ranktext +=String.valueOf(number);
+                    ranktext +=String.valueOf(number)+"\n";
                     number ++;
                 }
                 timev.setText(timetext);

@@ -133,6 +133,19 @@ public class FreeModePlayScreen extends AppCompatActivity {
             }
         });
 //////////////////////////////////////////////////
+        //일시정지 버튼 구현
+        ImageButton btnPause = (ImageButton) findViewById(R.id.btn_pause);
+        btnPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pauseTimer();
+                fragmentContainerView.setVisibility(View.VISIBLE);
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new pauseFragment())
+                        .commit();
+
+            }
+        });
 
         //홈버튼 구현
         ImageButton btnHome = findViewById(R.id.btn_home);
@@ -364,6 +377,17 @@ public class FreeModePlayScreen extends AppCompatActivity {
         timerHandler.removeCallbacks(timerRunnable);
         timerHandler.postDelayed(timerRunnable, 0);
     }
+    //프래그 먼트로 넘어갈 때, 시간 멈추는 함수
+    private void pauseTimer() {
+        endTime = System.currentTimeMillis();
+        timerHandler.removeCallbacks(timerRunnable);
+        calTime = endTime - startTime;
+    }
+    public void resumeTimerFromFragment() {
+        startTime = System.currentTimeMillis() - calTime;
+        timerHandler.postDelayed(timerRunnable, 0);
+    }
+
 }
 
 
