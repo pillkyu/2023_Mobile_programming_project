@@ -80,6 +80,7 @@ public class ChallengeModeClearpageScreen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),RankingpageScreen.class);
                 intent.putExtra("selected_image",imgId);
+
                 startActivity(intent);
             }
         });

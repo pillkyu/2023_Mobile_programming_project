@@ -350,9 +350,9 @@ public class FreeModePlayScreen extends AppCompatActivity {
         endTime = System.currentTimeMillis();
         timerHandler.removeCallbacks(timerRunnable);
         calTime=endTime-startTime;
-        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putLong(END_TIME_KEY, calTime);
-        editor.apply();
+        SharedPreferences.Editor editor2 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        editor2.putLong(END_TIME_KEY, calTime);
+        editor2.apply();
         // 여기서 타이머를 일시 정지할 수 있습니다.
     }
 

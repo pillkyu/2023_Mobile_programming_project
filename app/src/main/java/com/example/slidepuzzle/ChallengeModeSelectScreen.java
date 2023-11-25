@@ -69,6 +69,7 @@ public class ChallengeModeSelectScreen extends AppCompatActivity {
 
                 intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
                 intent.putExtra("selected_image", selectimage.toString()); // 이미지 Uri 전달
+                intent.putExtra("Resource_Id",selectedImageResource);
                 startActivity(intent);
             }
         });
