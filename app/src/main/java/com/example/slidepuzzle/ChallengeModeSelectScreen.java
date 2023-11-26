@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ChallengeModeSelectScreen extends AppCompatActivity {
     private int selectedImageResource; // URI를 저장할 변수 선언
     private int selected_num;
-    private Uri selectimage;
+    private Uri selectedImageUri;
     StartScreen.myDBHelper myHelper;
 
 
@@ -27,12 +28,12 @@ public class ChallengeModeSelectScreen extends AppCompatActivity {
 
 
         selectedImageResource = getIntent().getIntExtra("Resource_Id", 0);
-        selectimage = Uri.parse("android.resource://" + getPackageName() + "/" + selectedImageResource);
+        selectedImageUri = Uri.parse("android.resource://" + getPackageName() + "/" + selectedImageResource);
 
 
 
         ImageView imageView = findViewById(R.id.free_mode_play_placehold);
-        imageView.setImageURI(selectimage);
+        imageView.setImageURI(selectedImageUri);
 
         //nBy n button 구현
         RadioButton btn3by3 = findViewById(R.id.btn_3by3);
@@ -68,11 +69,15 @@ public class ChallengeModeSelectScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ChallengeModeSelectScreen.this, ChallengeModePlayScreen.class);
-
-                intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
-                intent.putExtra("selected_image", selectimage.toString()); // 이미지 Uri 전달
-                intent.putExtra("Resource_Id",selectedImageResource);
-                startActivity(intent);
+                if(selected_num==0) {
+                    Toast.makeText(ChallengeModeSelectScreen.this, "난이도를 선택해주세요!", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
+                    intent.putExtra("selected_image", selectedImageUri.toString()); // 이미지 Uri 전달
+                    //intent.putExtra("Resource_Id",selectedImageResource);
+                    startActivity(intent);
+                }
             }
         });
         //btn_back 구현

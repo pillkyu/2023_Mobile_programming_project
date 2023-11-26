@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -98,10 +99,22 @@ import java.io.IOException;
             btnstart.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(FreeModeScreen.this, FreeModePlayScreen.class);
-                    intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
-                    intent.putExtra("selected_image",  selectedImageUri.toString()); // 이미지 byte 전달
-                    startActivity(intent);
+                    if (selected_num == 0 && selectedImageUri == null) {
+                        // 둘 다 선택되지 않은 경우
+                        Toast.makeText(FreeModeScreen.this, "이미지와 난이도를 선택해주세요!", Toast.LENGTH_SHORT).show();
+                    } else if (selected_num == 0) {
+                        // 난이도를 선택하지 않은 경우
+                        Toast.makeText(FreeModeScreen.this, "난이도를 선택해주세요!", Toast.LENGTH_SHORT).show();
+                    } else if (selectedImageUri == null) {
+                        // 이미지를 선택하지 않은 경우
+                        Toast.makeText(FreeModeScreen.this, "이미지를 선택해주세요!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // nbyn 버튼과 이미지 가져오기 버튼을 모두 선택한 경우
+                        Intent intent = new Intent(FreeModeScreen.this, FreeModePlayScreen.class);
+                        intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
+                        intent.putExtra("selected_image", selectedImageUri.toString()); // 이미지 byte 전달
+                        startActivity(intent);
+                    }
                 }
             });
 

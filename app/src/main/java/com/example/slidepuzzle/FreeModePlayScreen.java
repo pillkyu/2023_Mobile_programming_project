@@ -56,7 +56,11 @@ public class FreeModePlayScreen extends AppCompatActivity {
             long millis = System.currentTimeMillis() - startTime;
             int seconds = (int) (millis / 1000);
 
-            timerTextView.setText(seconds+"초");
+            int minutes = seconds / 60; // 분 계산
+            int remainingSeconds = seconds % 60; // 초 계산
+
+            String timeString = String.format("%d분 %02d초", minutes, remainingSeconds);
+            timerTextView.setText(timeString);
 
             timerHandler.postDelayed(this, 1000); // 1초마다 업데이트
         }
@@ -195,7 +199,7 @@ public class FreeModePlayScreen extends AppCompatActivity {
 
 
                                     if (isPuzzleComplete()) {
-                                        Toast.makeText(FreeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(FreeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
 
                                     }
                                 }
@@ -251,7 +255,7 @@ public class FreeModePlayScreen extends AppCompatActivity {
                             updatePuzzleView(width,height,num);
 
                              if (isPuzzleComplete()) {
-                                Toast.makeText(FreeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(FreeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
                                  //SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                                  //calTime=prefs.getLong(END_TIME_KEY, 0);
 

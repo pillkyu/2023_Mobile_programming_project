@@ -77,22 +77,22 @@
 
                 <TextView
                     android:id="@+id/Rank"
-                    android:layout_width="0dp"
+                    android:layout_width="15dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="1\n2\n3\n4"
-                    android:textSize="30dp"
+                    android:textSize="25dp"
                     android:lineSpacingMultiplier="1.2"
                     android:layout_margin="20dp"
                     android:paddingLeft="10dp"
                     />
                 <TextView
                     android:id="@+id/Time"
-                    android:layout_width="0dp"
+                    android:layout_width="40dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="10\n20\n30\n40"
-                    android:textSize="30dp"
+                    android:textSize="25dp"
                     android:lineSpacingMultiplier="1.2"
                     android:layout_margin="20dp"
                     android:paddingLeft="10dp"
@@ -100,11 +100,11 @@
 
                 <TextView
                     android:id="@+id/Moves"
-                    android:layout_width="0dp"
+                    android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_columnWeight="1"
                     android:text="10\n20\n30\n40"
-                    android:textSize="30dp"
+                    android:textSize="25dp"
                     android:lineSpacingMultiplier="1.2"
                     android:layout_margin="20dp"
                     android:paddingLeft="10dp"

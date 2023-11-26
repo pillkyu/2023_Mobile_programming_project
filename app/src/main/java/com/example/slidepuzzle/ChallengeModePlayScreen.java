@@ -58,7 +58,11 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
             long millis = System.currentTimeMillis() - startTime;
             int seconds = (int) (millis / 1000);
 
-            timerTextView.setText(seconds+"초");
+            int minutes = seconds / 60; // 분 계산
+            int remainingSeconds = seconds % 60; // 초 계산
+
+            String timeString = String.format("%d분 %02d초", minutes, remainingSeconds);
+            timerTextView.setText(timeString);
 
             timerHandler.postDelayed(this, 1000); // 1초마다 업데이트
         }
@@ -218,7 +222,7 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
 
 
                             if (isPuzzleComplete()) {
-                                Toast.makeText(ChallengeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(ChallengeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
 
                             }
                         }
@@ -274,7 +278,7 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
                             updatePuzzleView(width,height,num);
 
                             if (isPuzzleComplete()) {
-                                Toast.makeText(ChallengeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(ChallengeModePlayScreen.this, "퍼즐이 완성되었습니다!", Toast.LENGTH_SHORT).show();
                                 //SharedPreferences prefs2 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                                 //calTime=prefs2.getLong(END_TIME_KEY, 0);
                                 Long calctime =System.currentTimeMillis() -startTime;
@@ -323,7 +327,7 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
     private boolean isPuzzleComplete() {
         for (int i = 0; i < puzzlePieces.size(); i++) {
             if (puzzlePieces.get(i) != i) {
-                return false; // true로 수정시 바로 깨짐
+                return true; // true로 수정시 바로 깨짐
             }
         }
         return true;

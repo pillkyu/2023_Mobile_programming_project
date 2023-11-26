@@ -48,10 +48,14 @@ public class RankingpageScreen extends AppCompatActivity {
         String ranktext ="";
         int number = 1;  //Rank에 표시될 숫자
         while (cursor.moveToNext()) {
+            long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
+            long minutes = seconds / 60; // 초를 분으로 변환
+            long remainingSeconds = seconds % 60; // 나머지 초 계산
+            String formattedTime = String.format("%02d:%02d", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
 
-            timetext +=String.valueOf(cursor.getString(0)) +"\n";
-            movetext +=String.valueOf(cursor.getString(1))+"\n";
-            ranktext +=String.valueOf(number)+"\n";
+            timetext += formattedTime + "\n";
+            movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
+            ranktext +=String.valueOf(number)+"위"+"\n";
             number ++;
         }
         timev.setText(timetext);
@@ -70,9 +74,14 @@ public class RankingpageScreen extends AppCompatActivity {
                 String ranktext ="";
                 int number = 1;  //Rank에 표시될 숫자
                 while (cursor.moveToNext()) {
-                    timetext +=String.valueOf(cursor.getString(0)) +"\n";
-                    movetext +=String.valueOf(cursor.getString(1))+"\n";
-                    ranktext +=String.valueOf(number)+"\n";
+                    long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
+                    long minutes = seconds / 60; // 초를 분으로 변환
+                    long remainingSeconds = seconds % 60; // 나머지 초 계산
+                    String formattedTime = String.format("%02d:%02d", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
+
+                    timetext += formattedTime + "\n";
+                    movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
+                    ranktext +=String.valueOf(number)+"위"+"\n";
                     number ++;
                 }
                 timev.setText(timetext);
@@ -93,9 +102,14 @@ public class RankingpageScreen extends AppCompatActivity {
                 String ranktext ="";
                 int number = 1;  //Rank에 표시될 숫자
                 while (cursor.moveToNext()) {
-                    timetext +=String.valueOf(cursor.getString(0)) +"\n";
-                    movetext +=String.valueOf(cursor.getString(1))+"\n";
-                    ranktext +=String.valueOf(number)+"\n";
+                    long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
+                    long minutes = seconds / 60; // 초를 분으로 변환
+                    long remainingSeconds = seconds % 60; // 나머지 초 계산
+                    String formattedTime = String.format("%02d:%02d", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
+
+                    timetext += formattedTime + "\n";
+                    movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
+                    ranktext +=String.valueOf(number)+"위"+"\n";
                     number ++;
                 }
                 timev.setText(timetext);
@@ -116,9 +130,14 @@ public class RankingpageScreen extends AppCompatActivity {
                 String ranktext ="";
                 int number = 1;  //Rank에 표시될 숫자
                 while (cursor.moveToNext()) {
-                    timetext +=String.valueOf(cursor.getString(0)) +"\n";
-                    movetext +=String.valueOf(cursor.getString(1))+"\n";
-                    ranktext +=String.valueOf(number)+"\n";
+                    long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
+                    long minutes = seconds / 60; // 초를 분으로 변환
+                    long remainingSeconds = seconds % 60; // 나머지 초 계산
+                    String formattedTime = String.format("%02d:%02d", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
+
+                    timetext += formattedTime + "\n";
+                    movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
+                    ranktext +=String.valueOf(number)+"위"+"\n";
                     number ++;
                 }
                 timev.setText(timetext);
