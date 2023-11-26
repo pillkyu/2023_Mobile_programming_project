@@ -327,7 +327,7 @@ public class ChallengeModePlayScreen extends AppCompatActivity {
     private boolean isPuzzleComplete() {
         for (int i = 0; i < puzzlePieces.size(); i++) {
             if (puzzlePieces.get(i) != i) {
-                return true; // true로 수정시 바로 깨짐
+                return false; // true로 수정시 바로 깨짐
             }
         }
         return true;
