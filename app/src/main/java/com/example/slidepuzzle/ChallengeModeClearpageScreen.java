@@ -48,7 +48,13 @@ public class ChallengeModeClearpageScreen extends AppCompatActivity {
         int num = intent.getIntExtra("selected_num",0);
         int moveCount = intent.getIntExtra("move_count",0);
         int time = (int) intent.getLongExtra("time",0);
+
+        //time 분:초로 표기, moves에 텍스트 추가
         time = time/1000;
+        long  minute = time / 60;
+        long  remainSecond = time % 60;
+        String formatTime = String.format("%01d분%01d초", minute, remainSecond);
+        String formatMove = String.format("%d회",moveCount);
         //데이터 삽입
         sqlDB = myHelper.getWritableDatabase(); // DB 쓰기 모드로 읽어옴
         String Sql = "INSERT INTO image_records VALUES (NULL," + imgId + ", " + time + "," + moveCount + ", " + num + ");";
@@ -58,8 +64,8 @@ public class ChallengeModeClearpageScreen extends AppCompatActivity {
 
         //my결과 띄우기
         imgv.setImageResource(imgId);
-        mytimev.setText(String.valueOf(time));
-        mymovev.setText(String.valueOf(moveCount));
+        mytimev.setText(formatTime);
+        mymovev.setText(formatMove);
 
         //데이터 검색 및 출력
         sqlDB = myHelper.getReadableDatabase(); // DB 읽기 모드로 읽어옴 //테이블에서 imgId와 num인 투플의 time과 movement 뽑음
@@ -67,8 +73,12 @@ public class ChallengeModeClearpageScreen extends AppCompatActivity {
         String timetext = "";
         String movetext = "";
         while (cursor.moveToNext()) {
-            timetext +=String.valueOf(cursor.getString(0))+"\n";
-            movetext +=String.valueOf(cursor.getString(1))+"\n";
+            long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
+            long minutes = seconds / 60; // 초를 분으로 변환
+            long remainingSeconds = seconds % 60; // 나머지 초 계산
+            String formattedTime = String.format("%01d분%01d초", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
+            timetext += formattedTime + "\n";
+            movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
         }
         times.setText(timetext);
         moves.setText(movetext);

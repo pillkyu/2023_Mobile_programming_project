@@ -48,12 +48,8 @@ public class RankingpageScreen extends AppCompatActivity {
         String ranktext ="";
         int number = 1;  //Rank에 표시될 숫자
         while (cursor.moveToNext()) {
-            long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
-            long minutes = seconds / 60; // 초를 분으로 변환
-            long remainingSeconds = seconds % 60; // 나머지 초 계산
-            String formattedTime = String.format("%02d:%02d", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
 
-            timetext += formattedTime + "\n";
+            timetext += formatTimeFromSeconds(cursor.getString(0)) + "\n";
             movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
             ranktext +=String.valueOf(number)+"위"+"\n";
             number ++;
@@ -63,6 +59,7 @@ public class RankingpageScreen extends AppCompatActivity {
         rankv.setText(ranktext);
         cursor.close();
         sqlDB.close();
+
 
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,12 +71,8 @@ public class RankingpageScreen extends AppCompatActivity {
                 String ranktext ="";
                 int number = 1;  //Rank에 표시될 숫자
                 while (cursor.moveToNext()) {
-                    long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
-                    long minutes = seconds / 60; // 초를 분으로 변환
-                    long remainingSeconds = seconds % 60; // 나머지 초 계산
-                    String formattedTime = String.format("%02d:%02d", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
 
-                    timetext += formattedTime + "\n";
+                    timetext +=formatTimeFromSeconds(cursor.getString(0)) + "\n";
                     movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
                     ranktext +=String.valueOf(number)+"위"+"\n";
                     number ++;
@@ -102,12 +95,9 @@ public class RankingpageScreen extends AppCompatActivity {
                 String ranktext ="";
                 int number = 1;  //Rank에 표시될 숫자
                 while (cursor.moveToNext()) {
-                    long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
-                    long minutes = seconds / 60; // 초를 분으로 변환
-                    long remainingSeconds = seconds % 60; // 나머지 초 계산
-                    String formattedTime = String.format("%02d:%02d", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
 
-                    timetext += formattedTime + "\n";
+
+                    timetext +=formatTimeFromSeconds(cursor.getString(0)) + "\n";
                     movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
                     ranktext +=String.valueOf(number)+"위"+"\n";
                     number ++;
@@ -120,6 +110,7 @@ public class RankingpageScreen extends AppCompatActivity {
             }
         });
 
+
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,12 +121,9 @@ public class RankingpageScreen extends AppCompatActivity {
                 String ranktext ="";
                 int number = 1;  //Rank에 표시될 숫자
                 while (cursor.moveToNext()) {
-                    long seconds = Long.parseLong(cursor.getString(0)); // 가정된 초 단위 값
-                    long minutes = seconds / 60; // 초를 분으로 변환
-                    long remainingSeconds = seconds % 60; // 나머지 초 계산
-                    String formattedTime = String.format("%02d:%02d", minutes, remainingSeconds); // mm:ss 형식으로 포맷팅
 
-                    timetext += formattedTime + "\n";
+
+                    timetext +=formatTimeFromSeconds(cursor.getString(0)) + "\n";
                     movetext +=String.valueOf(cursor.getString(1))+"회"+"\n";
                     ranktext +=String.valueOf(number)+"위"+"\n";
                     number ++;
@@ -155,5 +143,16 @@ public class RankingpageScreen extends AppCompatActivity {
                 BtnHome.goHome(RankingpageScreen.this);
             }
         });
+
+    }
+    //시간 변환 함수
+    public String formatTimeFromSeconds(String secondsString) {
+        // 초를 분과 나머지 초로 분리
+        long seconds = Long.parseLong(secondsString);
+        long minutes = seconds / 60;
+        long remainingSeconds = seconds % 60;
+
+        // 시간을 mm:ss 형식으로 포맷팅
+        return String.format("%01d분%01d초", minutes, remainingSeconds);
     }
 }

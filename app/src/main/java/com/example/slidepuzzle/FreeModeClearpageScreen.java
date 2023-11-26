@@ -38,10 +38,16 @@ public class FreeModeClearpageScreen extends AppCompatActivity {
         String selectedImageUriString = intent.getStringExtra("selected_image"); //이미지
         Uri selectedImageUri = Uri.parse(selectedImageUriString);
         int seconds = (int) (time/1000);
+        //텍스트 출력 변경
+        long  minute = seconds / 60;
+        long  remainSecond = seconds % 60;
+        String formatTime = String.format("%01d분%01d초", minute, remainSecond);
+        String formatMove = String.format("%d회",moveCount);
+
         imgv.setImageURI(selectedImageUri);
            //비트맵을 출력
-        timev.setText(String.valueOf(seconds));
-        movev.setText(String.valueOf(moveCount));
+        timev.setText(formatTime);
+        movev.setText(formatMove);
 
 
         //home 버튼 구현
