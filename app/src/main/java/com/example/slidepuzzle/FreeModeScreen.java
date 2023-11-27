@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -17,8 +18,11 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 
@@ -26,6 +30,8 @@ import java.io.IOException;
 
         private int selected_num;
         private Uri selectedImageUri;
+        private Uri squareUri;
+        File imageFile; // 이 부분을 클래스 레벨로 옮김
 
         private ActivityResultLauncher<Intent> activityResultLauncher;
 
@@ -33,6 +39,9 @@ import java.io.IOException;
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_free_mode_screen);
+
+            imageFile = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "square_image.jpg"); // 이 부분을 onCreate 내부로 이동
+
 
             activityResultLauncher = registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
@@ -112,7 +121,7 @@ import java.io.IOException;
                         // nbyn 버튼과 이미지 가져오기 버튼을 모두 선택한 경우
                         Intent intent = new Intent(FreeModeScreen.this, FreeModePlayScreen.class);
                         intent.putExtra("selected_num", selected_num); // 그리드 크기 전달
-                        intent.putExtra("selected_image", selectedImageUri.toString()); // 이미지 byte 전달
+                        intent.putExtra("selected_image", squareUri.toString()); // 이미지 byte 전달
                         startActivity(intent);
                     }
                 }
@@ -148,11 +157,22 @@ import java.io.IOException;
                 Bitmap squareBitmap = Bitmap.createBitmap(originalBitmap, x, y, squareSize, squareSize);
                 ImageView imageView = findViewById(R.id.view_for_image);
                 imageView.setImageBitmap(squareBitmap);
+                try {
+                    FileOutputStream fos = new FileOutputStream(imageFile);
+                    squareBitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                    fos.flush();
+                    fos.close();
+                    squareUri = FileProvider.getUriForFile(this, "com.example.slidepuzzle.provider", imageFile);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+
 
 
     }
